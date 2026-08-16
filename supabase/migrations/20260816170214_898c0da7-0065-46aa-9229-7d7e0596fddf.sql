@@ -1,0 +1,2 @@
+REVOKE SELECT ON public.blog_posts FROM authenticated;
+GRANT SELECT (id, title_en, title_ar, slug, excerpt_en, excerpt_ar, content_en, content_ar, featured_image, meta_description_en, meta_description_ar, keywords, category, author, published, published_at, created_at, updated_at, view_count, scheduled_at) ON public.blog_posts TO authenticated;
