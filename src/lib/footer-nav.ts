@@ -18,7 +18,6 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Products",
     links: [
       { label: "Noqoody Pay", hash: "payments", desc: "Noqoody Pay online payment gateway for Qatar merchants" },
-      { label: "974Tap2Pay", hash: "pos", desc: "974Tap2Pay tap-to-phone payment acceptance" },
       { label: "POS Payments", hash: "pos", desc: "In-store POS card payment acceptance" },
       { label: "Payment channels", hash: "channels", desc: "Supported payment channels, cards and wallets" },
       { label: "Prepaid Cards", hash: "services", desc: "Prepaid card issuing and disbursement programmes" },

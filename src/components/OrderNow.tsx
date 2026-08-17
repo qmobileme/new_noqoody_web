@@ -122,7 +122,7 @@ export function OrderNow({ devices }: { devices: OrderDevice[] }) {
 
   return (
     <main className="relative min-h-screen">
-      <LiquidBackground linesInFront />
+      <LiquidBackground hideLines />
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -165,7 +165,7 @@ export function OrderNow({ devices }: { devices: OrderDevice[] }) {
           </p>
           <div className="mt-6 h-px bg-border" />
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,360px)_1fr]">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,300px)_1fr]">
             <section className="space-y-5">
               <div className="flex items-center gap-3">
                 <Switch id="existing" checked={existing} onCheckedChange={setExisting} />

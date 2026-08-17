@@ -4,7 +4,13 @@ import { useEffect, useRef, useState } from "react";
  * Light "liquid" gradient field that follows the pointer with an eased lag.
  * Pure presentation: writes CSS custom properties, no re-renders.
  */
-export function LiquidBackground({ linesInFront = false }: { linesInFront?: boolean }) {
+export function LiquidBackground({
+  linesInFront = false,
+  hideLines = false,
+}: {
+  linesInFront?: boolean;
+  hideLines?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -118,9 +124,9 @@ export function LiquidBackground({ linesInFront = false }: { linesInFront?: bool
         }
       />
 
-      {!linesInFront ? <BrandLines /> : null}
+      {!linesInFront && !hideLines ? <BrandLines /> : null}
     </div>
-    {linesInFront ? (
+    {linesInFront && !hideLines ? (
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-20 overflow-hidden"

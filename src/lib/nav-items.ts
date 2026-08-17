@@ -15,7 +15,7 @@ export const navItems: NavItem[] = [
     href: "/pos-products",
     children: [
       { label: "POS Menu", href: "/pos-menu", icon: "help" },
-      { label: "Why our POS?", href: "/why-our-pos", icon: "help" },
+      { label: "Why our POS?", href: "/best-pos-provider-in-qatar", icon: "help" },
       { label: "NoqA50s", href: "/pos-products#noqa50s", icon: "/why-pos/noq-a50s-Bunwo7IH.webp" },
       { label: "NoqA910", href: "/pos-products#noqa910", icon: "/why-pos/noq-a910-CdVa4rSN.webp" },
       { label: "NoqA920", href: "/pos-products#noqa920", icon: "/why-pos/noq-a920-CKH7C9uO.webp" },
@@ -64,8 +64,10 @@ export const navItems: NavItem[] = [
   },
   {
     label: "About Us",
-    href: "/events",
+    href: "/about",
     children: [
+      { label: "About Noqoody", href: "/about" },
+      { label: "Licenses", href: "/licenses" },
       { label: "Events", href: "/events" },
       { label: "Feedback", href: "/feedback" },
       { label: "Blog", href: "/blog" },

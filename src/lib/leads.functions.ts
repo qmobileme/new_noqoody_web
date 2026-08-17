@@ -39,5 +39,25 @@ export const submitLead = createServerFn({ method: "POST" })
       return { ok: false as const, error: "We couldn't save your request. Please try again." };
     }
 
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("lead-notification", "info@noqoody.com", {
+        templateData: {
+          formType: data.formType,
+          fullName: data.fullName || data.email,
+          email: data.email,
+          phone: "phone" in data ? data.phone : undefined,
+          company: "company" in data ? data.company : undefined,
+          industry: "industry" in data ? data.industry : undefined,
+          monthlyVolume: "monthlyVolume" in data ? data.monthlyVolume : undefined,
+          message: "message" in data ? data.message : undefined,
+        },
+        idempotencyKey: `lead-notification-${data.email}-${Date.now()}`,
+        replyTo: data.email,
+      });
+    } catch (mailError) {
+      console.error("Lead notification email failed:", mailError);
+    }
+
     return { ok: true as const };
   });

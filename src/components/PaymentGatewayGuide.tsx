@@ -43,7 +43,7 @@ const rows: Row[] = [
   },
   {
     provider: "Bank gateways (QNB, CBQ)",
-    cells: ["Yes", "Yes", "No", "No", "Yes", "No", "Bank hours"],
+    cells: ["Yes", "Yes", "Yes", "Yes", "Yes", "No", "Bank hours"],
   },
   { provider: "Regional PSPs (Tap, PayTabs)", cells: ["Yes", "Partial", "No", "No", "Yes", "Yes", "Regional"] },
   { provider: "Local challengers (Dibsy, Fatora)", cells: ["Yes", "Partial", "No", "Limited", "Yes", "Yes", "Limited"] },
@@ -223,8 +223,8 @@ export function PaymentGatewayGuide() {
         <p className="mt-4 max-w-3xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
           "Partial" NAPS means the provider routes transactions through an intermediary rather than connecting
           directly, which adds cost and increases the risk of failure on local debit cards. Bank gateways have the
-          licensing and the NAPS access but stop there — no payment links, no SoftPOS, no support outside office
-          hours. Regional providers ship polished products that weren't built around Qatar's rails. Noqoody covers
+          licensing, the NAPS access and card acceptance in store, but stop short — no payment links and no support
+          outside office hours. Regional providers ship polished products that weren't built around Qatar's rails. Noqoody covers
           every column, which is why merchants here run it as a single payment stack instead of stitching three
           tools together.
         </p>

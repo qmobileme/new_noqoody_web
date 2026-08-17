@@ -16,7 +16,7 @@ export function usePosNavItems(items: NavItem[]): NavItem[] {
             ...item,
             children: [
               { label: "POS Menu", href: "/pos-menu", icon: "help" },
-              { label: "Why our POS?", href: "/why-our-pos", icon: "help" },
+              { label: "Why our POS?", href: "/best-pos-provider-in-qatar", icon: "help" },
               ...data.map((p) => ({
                 label: p.name,
                 href: `/pos-products/${p.slug}`,

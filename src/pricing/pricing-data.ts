@@ -231,7 +231,7 @@ export const COMPARE_ROWS: CompareRow[] = [
     enterprise: "Custom",
     cycle: { businessAnnual: "QR 1,500 / yr per POS" },
   },
-  { label: "Setup &amp; registration (online)", starter: "QR 0", business: "QR 0", enterprise: "QR 0", group: "pricing", cls: { starter: "win", business: "win", enterprise: "win" } },
+  { label: "Setup &amp; registration (online)", starter: "QR 0", business: "QR 399", enterprise: "QR 1,000", group: "pricing", cls: { starter: "win" } },
   { label: "Local debit rate", starter: "1.45% + QR 1", business: "1.45% (POS flat)", enterprise: "From 1.40%", group: "pricing", cls: { enterprise: "win" } },
   { label: "Local credit &amp; wallets", starter: "2.00% + QR 1", business: "2.00% flat", enterprise: "Negotiated", group: "pricing", cls: { enterprise: "win" } },
   { label: "Amex &amp; international schemes", starter: "2.90%", business: "2.90%", enterprise: "Negotiated", group: "pricing" },

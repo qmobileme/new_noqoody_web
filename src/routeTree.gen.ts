@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BestPosProviderInQatarRouteImport } from './routes/best-pos-provider-in-qatar'
 import { Route as BlogSitemapDotxmlRouteImport } from './routes/blog-sitemap[.]xml'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as EventsRouteImport } from './routes/events'
@@ -18,6 +20,7 @@ import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as ForBanksRouteImport } from './routes/for-banks'
 import { Route as ForMerchantsRouteImport } from './routes/for-merchants'
 import { Route as InvoiceAppRouteImport } from './routes/invoice-app'
+import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as MerchantIntegrationGuideRouteImport } from './routes/merchant-integration-guide'
 import { Route as OrderConfirmationRouteImport } from './routes/order-confirmation'
 import { Route as OrderNowRouteImport } from './routes/order-now'
@@ -59,10 +62,21 @@ import { Route as AdminPostsIdRouteImport } from './routes/admin.posts.$id'
 import { Route as ApiPublicPaymentWebhookRouteImport } from './routes/api/public/payment-webhook'
 import { Route as BlogPreviewTokenRouteImport } from './routes/blog.preview.$token'
 import { Route as ApiPublicOgSlugRouteImport } from './routes/api/public/og.$slug'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestPosProviderInQatarRoute = BestPosProviderInQatarRouteImport.update({
+  id: '/best-pos-provider-in-qatar',
+  path: '/best-pos-provider-in-qatar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSitemapDotxmlRoute = BlogSitemapDotxmlRouteImport.update({
@@ -103,6 +117,11 @@ const ForMerchantsRoute = ForMerchantsRouteImport.update({
 const InvoiceAppRoute = InvoiceAppRouteImport.update({
   id: '/invoice-app',
   path: '/invoice-app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LicensesRoute = LicensesRouteImport.update({
+  id: '/licenses',
+  path: '/licenses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MerchantIntegrationGuideRoute =
@@ -312,9 +331,17 @@ const ApiPublicOgSlugRoute = ApiPublicOgSlugRouteImport.update({
   path: '/api/public/og/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best-pos-provider-in-qatar': typeof BestPosProviderInQatarRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/cookies': typeof CookiesRoute
   '/events': typeof EventsRoute
@@ -323,6 +350,7 @@ export interface FileRoutesByFullPath {
   '/for-banks': typeof ForBanksRoute
   '/for-merchants': typeof ForMerchantsRoute
   '/invoice-app': typeof InvoiceAppRoute
+  '/licenses': typeof LicensesRoute
   '/merchant-integration-guide': typeof MerchantIntegrationGuideRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/order-now': typeof OrderNowRoute
@@ -364,9 +392,12 @@ export interface FileRoutesByFullPath {
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
   '/blog/preview/$token': typeof BlogPreviewTokenRoute
   '/api/public/og/$slug': typeof ApiPublicOgSlugRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best-pos-provider-in-qatar': typeof BestPosProviderInQatarRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/cookies': typeof CookiesRoute
   '/events': typeof EventsRoute
@@ -375,6 +406,7 @@ export interface FileRoutesByTo {
   '/for-banks': typeof ForBanksRoute
   '/for-merchants': typeof ForMerchantsRoute
   '/invoice-app': typeof InvoiceAppRoute
+  '/licenses': typeof LicensesRoute
   '/merchant-integration-guide': typeof MerchantIntegrationGuideRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/order-now': typeof OrderNowRoute
@@ -416,10 +448,13 @@ export interface FileRoutesByTo {
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
   '/blog/preview/$token': typeof BlogPreviewTokenRoute
   '/api/public/og/$slug': typeof ApiPublicOgSlugRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/best-pos-provider-in-qatar': typeof BestPosProviderInQatarRoute
   '/blog-sitemap.xml': typeof BlogSitemapDotxmlRoute
   '/cookies': typeof CookiesRoute
   '/events': typeof EventsRoute
@@ -428,6 +463,7 @@ export interface FileRoutesById {
   '/for-banks': typeof ForBanksRoute
   '/for-merchants': typeof ForMerchantsRoute
   '/invoice-app': typeof InvoiceAppRoute
+  '/licenses': typeof LicensesRoute
   '/merchant-integration-guide': typeof MerchantIntegrationGuideRoute
   '/order-confirmation': typeof OrderConfirmationRoute
   '/order-now': typeof OrderNowRoute
@@ -469,11 +505,14 @@ export interface FileRoutesById {
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
   '/blog/preview/$token': typeof BlogPreviewTokenRoute
   '/api/public/og/$slug': typeof ApiPublicOgSlugRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/best-pos-provider-in-qatar'
     | '/blog-sitemap.xml'
     | '/cookies'
     | '/events'
@@ -482,6 +521,7 @@ export interface FileRouteTypes {
     | '/for-banks'
     | '/for-merchants'
     | '/invoice-app'
+    | '/licenses'
     | '/merchant-integration-guide'
     | '/order-confirmation'
     | '/order-now'
@@ -523,9 +563,12 @@ export interface FileRouteTypes {
     | '/api/public/payment-webhook'
     | '/blog/preview/$token'
     | '/api/public/og/$slug'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/best-pos-provider-in-qatar'
     | '/blog-sitemap.xml'
     | '/cookies'
     | '/events'
@@ -534,6 +577,7 @@ export interface FileRouteTypes {
     | '/for-banks'
     | '/for-merchants'
     | '/invoice-app'
+    | '/licenses'
     | '/merchant-integration-guide'
     | '/order-confirmation'
     | '/order-now'
@@ -575,9 +619,12 @@ export interface FileRouteTypes {
     | '/api/public/payment-webhook'
     | '/blog/preview/$token'
     | '/api/public/og/$slug'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/best-pos-provider-in-qatar'
     | '/blog-sitemap.xml'
     | '/cookies'
     | '/events'
@@ -586,6 +633,7 @@ export interface FileRouteTypes {
     | '/for-banks'
     | '/for-merchants'
     | '/invoice-app'
+    | '/licenses'
     | '/merchant-integration-guide'
     | '/order-confirmation'
     | '/order-now'
@@ -627,10 +675,13 @@ export interface FileRouteTypes {
     | '/api/public/payment-webhook'
     | '/blog/preview/$token'
     | '/api/public/og/$slug'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BestPosProviderInQatarRoute: typeof BestPosProviderInQatarRoute
   BlogSitemapDotxmlRoute: typeof BlogSitemapDotxmlRoute
   CookiesRoute: typeof CookiesRoute
   EventsRoute: typeof EventsRoute
@@ -639,6 +690,7 @@ export interface RootRouteChildren {
   ForBanksRoute: typeof ForBanksRoute
   ForMerchantsRoute: typeof ForMerchantsRoute
   InvoiceAppRoute: typeof InvoiceAppRoute
+  LicensesRoute: typeof LicensesRoute
   MerchantIntegrationGuideRoute: typeof MerchantIntegrationGuideRoute
   OrderConfirmationRoute: typeof OrderConfirmationRoute
   OrderNowRoute: typeof OrderNowRoute
@@ -680,6 +732,7 @@ export interface RootRouteChildren {
   ApiPublicPaymentWebhookRoute: typeof ApiPublicPaymentWebhookRoute
   BlogPreviewTokenRoute: typeof BlogPreviewTokenRoute
   ApiPublicOgSlugRoute: typeof ApiPublicOgSlugRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -689,6 +742,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-pos-provider-in-qatar': {
+      id: '/best-pos-provider-in-qatar'
+      path: '/best-pos-provider-in-qatar'
+      fullPath: '/best-pos-provider-in-qatar'
+      preLoaderRoute: typeof BestPosProviderInQatarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog-sitemap.xml': {
@@ -745,6 +812,13 @@ declare module '@tanstack/react-router' {
       path: '/invoice-app'
       fullPath: '/invoice-app'
       preLoaderRoute: typeof InvoiceAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/licenses': {
+      id: '/licenses'
+      path: '/licenses'
+      fullPath: '/licenses'
+      preLoaderRoute: typeof LicensesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/merchant-integration-guide': {
@@ -1034,11 +1108,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicOgSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BestPosProviderInQatarRoute: BestPosProviderInQatarRoute,
   BlogSitemapDotxmlRoute: BlogSitemapDotxmlRoute,
   CookiesRoute: CookiesRoute,
   EventsRoute: EventsRoute,
@@ -1047,6 +1130,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForBanksRoute: ForBanksRoute,
   ForMerchantsRoute: ForMerchantsRoute,
   InvoiceAppRoute: InvoiceAppRoute,
+  LicensesRoute: LicensesRoute,
   MerchantIntegrationGuideRoute: MerchantIntegrationGuideRoute,
   OrderConfirmationRoute: OrderConfirmationRoute,
   OrderNowRoute: OrderNowRoute,
@@ -1089,6 +1173,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicPaymentWebhookRoute: ApiPublicPaymentWebhookRoute,
   BlogPreviewTokenRoute: BlogPreviewTokenRoute,
   ApiPublicOgSlugRoute: ApiPublicOgSlugRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

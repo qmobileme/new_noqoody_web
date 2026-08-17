@@ -50,6 +50,30 @@ export const submitOrder = createServerFn({ method: "POST" })
       throw new Error("We couldn't submit your order. Please try again.");
     }
 
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      const { orderDeviceById: devices } = await import("./order-devices");
+      await sendTemplateEmail("order-notification", "info@noqoody.com", {
+        templateData: {
+          reference,
+          businessName: data.businessName,
+          contactName: data.contactName,
+          email: data.email,
+          phone: data.phone,
+          monthlyVolume: data.monthlyVolume,
+          existingMerchant: data.existingMerchant,
+          items: data.items.map((item) => ({
+            name: devices.get(item.id)?.name ?? item.id,
+            quantity: item.quantity,
+          })),
+        },
+        idempotencyKey: `order-notification-${reference}`,
+        replyTo: data.email,
+      });
+    } catch (mailError) {
+      console.error("Order notification email failed:", mailError);
+    }
+
     return { ok: true as const, reference };
   });
 
