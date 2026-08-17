@@ -15,6 +15,7 @@ import onlineAsset from "@/assets/hero-online.jpg.asset.json";
 import softposAsset from "@/assets/hero-softpos.jpg.asset.json";
 import card2AccountAsset from "@/assets/hero-card2account.jpg.asset.json";
 import storeInvoiceAsset from "@/assets/hero-store-invoice.jpg.asset.json";
+import remotePosAsset from "@/assets/hero-remote-pos.jpg.asset.json";
 
 const SIZES = "(max-width: 640px) 92vw, (max-width: 1024px) 60vw, 520px";
 const INTERVAL = 3000;
@@ -39,6 +40,16 @@ export const heroSlides = [
     title: "SoftPOS by Noqoody",
     description:
       "Accept contactless card and wallet payments straight on your mobile — no extra hardware.",
+  },
+  {
+    webp: `${remotePosAsset.url} 1280w`,
+    jpg: `${remotePosAsset.url} 1280w`,
+    fallback: remotePosAsset.url,
+    alt: "Smart Remote POS: a cashier desktop computer on a glowing podium sending a secure payment request along a glowing orange arc to a handheld POS terminal on a separate podium showing an approved 100.00 QAR payment, Doha skyline at sunset behind",
+    caption: "Push a payment to any terminal, anywhere.",
+    title: "Smart Remote POS",
+    description:
+      "Send a payment request from your cashier PC or back-office system straight to any Noqoody POS — even in another branch — for instant tap-and-pay.",
   },
   {
     webp: `${qnbAsset.url} 1200w`,

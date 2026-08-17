@@ -9,6 +9,7 @@ import {
   Activity,
   Upload,
   LogOut,
+  Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth, type Capability } from "@/hooks/useAuth";
@@ -44,6 +45,10 @@ const SECTIONS: { title: string; links: NavLink[] }[] = [
   {
     title: "Team",
     links: [{ to: "/admin/signup", label: "Staff accounts", icon: Users, capability: "staff.manage" }],
+  },
+  {
+    title: "Settings",
+    links: [{ to: "/admin/email", label: "Email settings", icon: Mail, capability: "staff.manage" }],
   },
 ];
 

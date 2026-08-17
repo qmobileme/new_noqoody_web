@@ -41,6 +41,7 @@ import { Route as AccountOrdersRouteImport } from './routes/account.orders'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminActivityRouteImport } from './routes/admin.activity'
 import { Route as AdminAuthorsRouteImport } from './routes/admin.authors'
+import { Route as AdminEmailRouteImport } from './routes/admin.email'
 import { Route as AdminEventsRouteImport } from './routes/admin.events'
 import { Route as AdminImportRouteImport } from './routes/admin.import'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -226,6 +227,11 @@ const AdminAuthorsRoute = AdminAuthorsRouteImport.update({
   path: '/admin/authors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminEmailRoute = AdminEmailRouteImport.update({
+  id: '/admin/email',
+  path: '/admin/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminEventsRoute = AdminEventsRouteImport.update({
   id: '/admin/events',
   path: '/admin/events',
@@ -370,6 +376,7 @@ export interface FileRoutesByFullPath {
   '/account/orders': typeof AccountOrdersRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/email': typeof AdminEmailRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/import': typeof AdminImportRoute
   '/admin/login': typeof AdminLoginRoute
@@ -426,6 +433,7 @@ export interface FileRoutesByTo {
   '/account/orders': typeof AccountOrdersRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/email': typeof AdminEmailRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/import': typeof AdminImportRoute
   '/admin/login': typeof AdminLoginRoute
@@ -483,6 +491,7 @@ export interface FileRoutesById {
   '/account/orders': typeof AccountOrdersRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/email': typeof AdminEmailRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/import': typeof AdminImportRoute
   '/admin/login': typeof AdminLoginRoute
@@ -541,6 +550,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/admin/activity'
     | '/admin/authors'
+    | '/admin/email'
     | '/admin/events'
     | '/admin/import'
     | '/admin/login'
@@ -597,6 +607,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/admin/activity'
     | '/admin/authors'
+    | '/admin/email'
     | '/admin/events'
     | '/admin/import'
     | '/admin/login'
@@ -653,6 +664,7 @@ export interface FileRouteTypes {
     | '/account/orders'
     | '/admin/activity'
     | '/admin/authors'
+    | '/admin/email'
     | '/admin/events'
     | '/admin/import'
     | '/admin/login'
@@ -710,6 +722,7 @@ export interface RootRouteChildren {
   AccountOrdersRoute: typeof AccountOrdersRoute
   AdminActivityRoute: typeof AdminActivityRoute
   AdminAuthorsRoute: typeof AdminAuthorsRoute
+  AdminEmailRoute: typeof AdminEmailRoute
   AdminEventsRoute: typeof AdminEventsRoute
   AdminImportRoute: typeof AdminImportRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -961,6 +974,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAuthorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/email': {
+      id: '/admin/email'
+      path: '/admin/email'
+      fullPath: '/admin/email'
+      preLoaderRoute: typeof AdminEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/events': {
       id: '/admin/events'
       path: '/admin/events'
@@ -1151,6 +1171,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountOrdersRoute: AccountOrdersRoute,
   AdminActivityRoute: AdminActivityRoute,
   AdminAuthorsRoute: AdminAuthorsRoute,
+  AdminEmailRoute: AdminEmailRoute,
   AdminEventsRoute: AdminEventsRoute,
   AdminImportRoute: AdminImportRoute,
   AdminLoginRoute: AdminLoginRoute,

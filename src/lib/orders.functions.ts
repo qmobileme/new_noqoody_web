@@ -53,6 +53,10 @@ export const submitOrder = createServerFn({ method: "POST" })
     try {
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
       const { orderDeviceById: devices } = await import("./order-devices");
+      const emailItems = data.items.map((item) => ({
+        name: devices.get(item.id)?.name ?? item.id,
+        quantity: item.quantity,
+      }));
       await sendTemplateEmail("order-notification", "info@noqoody.com", {
         templateData: {
           reference,
@@ -62,13 +66,46 @@ export const submitOrder = createServerFn({ method: "POST" })
           phone: data.phone,
           monthlyVolume: data.monthlyVolume,
           existingMerchant: data.existingMerchant,
-          items: data.items.map((item) => ({
-            name: devices.get(item.id)?.name ?? item.id,
-            quantity: item.quantity,
-          })),
+          items: emailItems,
         },
         idempotencyKey: `order-notification-${reference}`,
         replyTo: data.email,
+      });
+
+      // Customer confirmation: order details, a payment link (when a deposit is
+      // configured) and a tracking link.
+      const site = process.env["SITE_URL"] || "https://noqoody.lovable.app";
+      let paymentUrl: string | undefined;
+      const depositQar = Number(process.env["ORDER_DEPOSIT_QAR"] ?? 0);
+      if (Number.isFinite(depositQar) && depositQar >= 1) {
+        try {
+          const { createPayment } = await import("./shortlink.server");
+          const payment = await createPayment({
+            amountMinor: Math.round(depositQar * 100),
+            currency: "QAR",
+            description: `POS order ${reference}`,
+            phone: data.phone,
+          });
+          paymentUrl = `${site}/pay/${payment.code}`;
+        } catch (payError) {
+          console.error("Order payment link creation failed:", payError);
+        }
+      }
+
+      await sendTemplateEmail("order-confirmation", data.email, {
+        templateData: {
+          reference,
+          contactName: data.contactName,
+          businessName: data.businessName,
+          phone: data.phone,
+          monthlyVolume: data.monthlyVolume,
+          totalUnits,
+          items: emailItems,
+          paymentUrl,
+          trackingUrl: `${site}/order-tracking`,
+        },
+        idempotencyKey: `order-confirmation-${reference}`,
+        replyTo: "info@noqoody.com",
       });
     } catch (mailError) {
       console.error("Order notification email failed:", mailError);

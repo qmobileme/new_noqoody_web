@@ -220,6 +220,60 @@ export type Database = {
         }
         Relationships: []
       }
+      email_settings: {
+        Row: {
+          api_endpoint: string | null
+          from_email: string
+          from_name: string
+          id: boolean
+          imap_host: string
+          imap_port: number
+          notification_recipient: string
+          pop3_port: number
+          provider: string
+          quota: string
+          reply_to: string | null
+          smtp_host: string
+          smtp_port_ssl: number
+          smtp_port_starttls: number
+          updated_at: string
+        }
+        Insert: {
+          api_endpoint?: string | null
+          from_email?: string
+          from_name?: string
+          id?: boolean
+          imap_host?: string
+          imap_port?: number
+          notification_recipient?: string
+          pop3_port?: number
+          provider?: string
+          quota?: string
+          reply_to?: string | null
+          smtp_host?: string
+          smtp_port_ssl?: number
+          smtp_port_starttls?: number
+          updated_at?: string
+        }
+        Update: {
+          api_endpoint?: string | null
+          from_email?: string
+          from_name?: string
+          id?: boolean
+          imap_host?: string
+          imap_port?: number
+          notification_recipient?: string
+          pop3_port?: number
+          provider?: string
+          quota?: string
+          reply_to?: string | null
+          smtp_host?: string
+          smtp_port_ssl?: number
+          smtp_port_starttls?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       event_rsvps: {
         Row: {
           company: string | null

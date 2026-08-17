@@ -65,11 +65,37 @@ export async function sendTemplateEmail(
       ? template.subject(templateData)
       : template.subject
 
+  // Admin-configured mailbox (no-reply@sub.noqoody.com) drives the visible
+  // sender, and — when an HTTP send API is configured — the delivery route.
+  const { loadEmailSettings, sendViaMailboxApi } = await import('@/lib/email-settings.server')
+  const settings = await loadEmailSettings()
+
+  // Internal notification templates always follow the admin-configured inbox.
+  const finalRecipient = templateName.endsWith('-notification')
+    ? settings.notification_recipient || recipient
+    : recipient
+
+  try {
+    const sentViaMailbox = await sendViaMailboxApi(settings, {
+      to: finalRecipient,
+      subject,
+      html,
+      text,
+      ...(options.replyTo ? { replyTo: options.replyTo } : {}),
+    })
+    if (sentViaMailbox) return { sent: true }
+  } catch (mailboxError) {
+    // Never lose a lead: fall through to managed sending.
+    console.error('Mailbox API send failed, falling back to managed sending:', mailboxError)
+  }
+
+  const replyTo = options.replyTo || settings.reply_to || settings.from_email
+
   try {
     await sendLovableEmail(
       {
-        to: recipient,
-        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        to: finalRecipient,
+        from: `${settings.from_name || SITE_NAME} <noreply@${FROM_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
         subject,
         html,
@@ -77,7 +103,7 @@ export async function sendTemplateEmail(
         purpose: 'transactional',
         label: templateName,
         idempotency_key: options.idempotencyKey || crypto.randomUUID(),
-        ...(options.replyTo ? { reply_to: options.replyTo } : {}),
+        ...(replyTo ? { reply_to: replyTo } : {}),
       },
       { apiKey, sendUrl: process.env['LOVABLE_SEND_URL'] }
     )
